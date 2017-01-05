@@ -320,28 +320,22 @@
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{Bare Demo of IEEEtran.cls\\ for IEEE Conferences}
-
+\title{Prototyping Resilient Processing Cores in Workcraft}
 
 % author names and affiliations
 % use a multiple column layout for up to three different
 % affiliations
-\author{\IEEEauthorblockN{Michael Shell}
-\IEEEauthorblockA{School of Electrical and\\Computer Engineering\\
-Georgia Institute of Technology\\
-Atlanta, Georgia 30332--0250\\
-Email: http://www.michaelshell.org/contact.html}
+\author{\IEEEauthorblockN{\\Georgiy Lukjanov\\}
+\IEEEauthorblockA{\\\\University\\
+Russia}
 \and
-\IEEEauthorblockN{Homer Simpson}
-\IEEEauthorblockA{Twentieth Century Fox\\
-Springfield, USA\\
-Email: homer@thesimpsons.com}
+\IEEEauthorblockN{Alessandro de Gennaro\\Paulius Stankaitis\\Andrey Mokhov}
+\IEEEauthorblockA{\\Newcastle University\\
+Newcastle, UK}
 \and
-\IEEEauthorblockN{James Kirk\\ and Montgomery Scott}
-\IEEEauthorblockA{Starfleet Academy\\
-San Francisco, California 96678--2391\\
-Telephone: (800) 555--1212\\
-Fax: (888) 555--1212}}
+\IEEEauthorblockN{\\Maxim Rykunov\\}
+\IEEEauthorblockA{\\\\IMEC\\
+Leuven, Belgium}}
 
 % conference papers do not typically use \thanks and this command
 % is locked out in conference mode. If really needed, such as for
@@ -366,12 +360,8 @@ Fax: (888) 555--1212}}
 %\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
 
 
-
-
 % use for special paper notices
 %\IEEEspecialpapernotice{(Invited Paper)}
-
-
 
 
 % make the title area
@@ -380,12 +370,33 @@ Fax: (888) 555--1212}}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-The abstract goes here.
+We present a methodology for the design and fast prototyping of
+processing cores with resilient microarchitecture. The resilience is
+achieved by equipping the core with a family of datapath components
+optimised for different operating modes and a flexible control
+structure that allows to change an instruction implementation in
+runtime depending on the environmental conditions and application
+requirements. We use asynchronous design techniques to achieve
+\emph{short-term resilience}, i.e. survival in extreme environmental
+conditions, such as near-threshold and/or unstable voltage supply.
+\emph{Long-term resilience} is achieved by providing mechanisms for
+runtime reconfiguration of the processor microarchitecture, which
+is essential for safety-critical applications, such as biomedical
+implants that cannot be taken offline for maintenance. By using
+formal methods one can guarantee the correctness and uninterrupted
+service during such runtime reconfigurations.
+
+The presented methodology is supported by open-source EDA tool
+Workcraft, and has been validated in silicon by successfully
+fabricating two chips: Intel 8051 processing core and a
+reconfigurable dataflow pipeline for ordinal pattern analysis.
+To facilitate fast prototyping of resilient processing cores, we
+propose a domain-specific language for formal specification,
+compiler-checked documentation, and software-level simulation of
+processor prototypes.
 \end{abstract}
 
 % no keywords
-
-
 
 
 % For peer review papers, you can put extra information on the cover

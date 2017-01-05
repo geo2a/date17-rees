@@ -439,7 +439,7 @@ encoding initial system specification provide verified-by-construction result.
 \section{Tool support}
 
 Formalising the design specifications is a good approach to the development of a resilient
-system. Specifications, represented via mathematical models, can indeed be verified and
+system. Specifications, represented via DSL, can indeed be verified and
 simulated, targeting an error-free system. Workcraft provides the support for different
 models, this can help the design for resiliency. Conditional partial order graphs (CPOG)
 (available in the Workcraft framework), for instance, can support the development of
@@ -449,8 +449,8 @@ depicted. Instructions can be specified in the form of algebraic equations at fi
 graphs can be imported, encoded and synthesised in the form of a microcontroller. The latter
 can be mapped with the usage of a technology library and eventually simulated: internal and
 external signals can be visualised via digital waveforms, where dependencies among signals
-are shown. The development of a domain specific language (DSL), that can be used for the
-specification of the instructions, still remains a gap of this flow. Having a scalable, yet
+are shown. we are developing a DSL for bridging the gap between formal methods toolsets such
+Rodin and hardware synthesis toolsets such as Workcraft. Having a scalable, yet
 reusable language would be beneficial for resiliency. The instruction correctness, indeed,
 could be simulated and formally verified, the partial order should be derived from the
 specifications.
@@ -469,8 +469,8 @@ reconfigurable pipeline for the computation of the ordinal pattern encoding. CPO
 for the design of the control unit, which is used for the reconfigurability of the pipeline
 (3-18 stages). DFS supported the design of the datapath asynchronous components instead. Each
 module has indeed been modelled and simulated in Workcraft at first, and then translated into
-hardware description (VHDL). The DFS model matches the HDL description, the asynchronous 4-
-hase dual rail protocol is implemented. Figure \ref{fig:voltage-resiliency} shows the
+hardware description (Verilog). The DFS model matches the HDL description, the asynchronous
+4-phase dual rail protocol is implemented. Figure \ref{fig:voltage-resiliency} shows the
 resiliency of the chip to the voltage variation. Workcraft, and the tools that the framework
 comes with, have been already validated for the design of resilient systems, the flow can
 still be improved by adopting DSL for formalising system specifications.

@@ -436,6 +436,36 @@ simulation environment gives a possibility to evaluate system capabilities
 without building an expensive prototype, and advanced types of hosting language
 encoding initial system specification provide verified-by-construction result. 
 
+Workcraft framework provide three DSLs: 
+
+\begin{itemize}
+\item Signal Transition Graphs (STGs) --- a low-level (signal-level) DSL for 
+specifying resilient asynchronous controllers.
+\item Conditional Partial Order Graphs (CPOGs) --- an intermediate-level 
+(microarchitecture-level) DSL for specifying processor instructions as 
+collections of partial orders.
+\item Dataflow Structures (DFSs) --- an intermediate-level (dataflow graphs) DSL 
+for specifying reconfigurable dataflow graphs.
+\end{itemize}
+
+Workcraft is able to translate models described with support of these DSLs into 
+Verilog --- a standard low-level industrial design language for hardware 
+description.  
+
+In our work, we concentrate on bridging Event-B --- a high-level DSL
+for formal specification of system requirements and system reconfiguration, 
+supported by Rodin toolset, and DSLs provided by Workcraft. As a 
+prototype of a bridging language, we develop Farfalle --- 
+an intermediate-level DSL embedded into Haskell that 
+is focused on description of processor microarchitectures.
+Haskell provide a very expressive tools for description of data and 
+computations. A concept of \texttt{Monad} gives a powerful abstraction for 
+building customized type-safe EDSLs, and syntactical support for monadic 
+\texttt{do}-notation makes this embedding perfectly smooth. Therefore, Farfalle
+has means to reduce errors in resilient systems design and give engineers a fast 
+and safe prototyping tool.      
+
+
 \section{Tool support}
 
 Formalising the design specifications is a good approach to the development of a resilient

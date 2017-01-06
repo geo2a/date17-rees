@@ -113,7 +113,7 @@
 % The documentation is contained in the cite.sty file itself.
 
 
-
+\usepackage{url}
 
 
 
@@ -470,8 +470,8 @@ and safe prototyping tool.
 
 Formalising the design specifications is a good approach to the development of a resilient
 system. Specifications, represented via DSL, can indeed be verified and
-simulated, targeting an error-free system. Workcraft provides the support for different
-models, this can help the design for resiliency. Conditional partial order graphs (CPOG)
+simulated, targeting an error-free system. Workcraft~\cite{workcraft_web} provides the support for different
+models, this can help the design for resiliency. Conditional partial order graphs (CPOG)~\cite{CPOG}
 (available in the Workcraft framework), for instance, can support the development of
 processor instruction sets. In Figure \ref{fig:screenshot}, all the steps from the
 specification of each instruction, to the synthesis of the final microcontroller are
@@ -494,16 +494,17 @@ specifications.
 \end{center}
 \end{figure*}
 
-The CPOG and Dataflow Structures (DFS) were used together to design an asynchronous
-reconfigurable pipeline for the computation of the ordinal pattern encoding. CPOG was used
+The CPOG and Dataflow Structures (DFS)~\cite{DFS} were used together to design an asynchronous
+reconfigurable pipeline for the computation of the ordinal pattern encoding~\cite{OPE}. CPOG was used
 for the design of the control unit, which is used for the reconfigurability of the pipeline
 (3-18 stages). DFS supported the design of the datapath asynchronous components instead. Each
 module has indeed been modelled and simulated in Workcraft at first, and then translated into
 hardware description (Verilog). The DFS model matches the HDL description, the asynchronous
 4-phase dual rail protocol is implemented. Figure \ref{fig:voltage-resiliency} shows the
 resiliency of the chip to the voltage variation. Workcraft, and the tools that the framework
-comes with, have been already validated for the design of resilient systems, the flow can
-still be improved by adopting DSL for formalising system specifications.
+comes with, have been also validated with the design of an asynchronous processor (Intel
+8051~\cite{rec-proc}), the flow can still be improved by adopting DSL for formalising system
+specifications.
 
 \begin{figure}[ht!]
 \begin{center}
@@ -631,9 +632,32 @@ still be improved by adopting DSL for formalising system specifications.
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
-% \begin{thebibliography}{0}
+\begin{thebibliography}{10}
 
-% \end{thebibliography}
+\bibitem{CPOG}
+	A. Mokhov, A. Yakovlev. \emph{``Conditional partial order graphs: Model, 
+	synthesis, and application''}. IEEE Transactions on Computers, Volume 59,
+	Pages 1480-1493, November 2010.
+	
+\bibitem{workcraft_web}
+	\textsc{Workcraft} homepage. \url{http://www.workcraft.org/}.	
+	
+\bibitem{DFS}
+	D. Sokolov, I. Poliakov, A. Yakovlev. \emph{``Analysis of static data flow structures''}.
+	Fundamenta Informaticae, volume 88,issue 4, pages 581 - 610. Publisher IOS Press. 2008.
+
+\bibitem{OPE}
+	C. Guo, W. Luk, S. Weston:
+	\emph{``Pipelined reconfigurable accelerator for ordinal pattern encoding''}.
+	Proc. Application-specific Systems, Architectures and Processors~(ASAP),
+	pp.~194--201, 2014.
+	
+\bibitem{rec-proc}
+	A. Mokhov, M. Rykunov, D. Sokolov, A. Yakovlev.
+	\emph{``Design of Processors with Reconfigurable Microarchitecture''}.
+	J. Low Power Electronics Application 2014, Volume 4(1). Pages 26-43.
+
+\end{thebibliography}
 
 
 

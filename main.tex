@@ -411,16 +411,54 @@ processor prototypes.
 \IEEEpeerreviewmaketitle
 
 \newpage	
-\section{Formal methods for EES}
+\section{Formal methods for runtime reconfigurability}
 
 
-Systems reconfigurability is crucial for a variety of safety critical applications. 
+%Systems reconfigurability is paramount for a number of safety critical systems classes.  
+%In general complex dependable systems must be self-adaptive to continually 
+%changing environment and ideally reconfigure dynamically without any 
+%human intervention.   
+
+%use mathematical approach.%\cite{calinescu2010formal}
 
 Formal methods - a mathematical model driven method provides a systematic approach
 for developing complex systems in a design reusable and correct-by-construction
-manner. 
+manner. The suitability of these techniques for a specification and verification of
+dynamically reconfigurable systems has been studied for some time now. A survey by 
+Calinescu and Kikuchi \cite{calinescu2010formal} overviews possible approaches in 
+using formal methods for adaptive systems at runtime. In an empirical comparison
+study by Bhattacharyya et al. \cite{DBLP:journals/corr/BhattacharyyaMP16}  different 
+formalisms for modelling suitability of reconfigurable systems were explored. The authors of the paper 
+\cite{Weyns:2012:SFM:2347583.2347592} review a decade of research on formal 
+methods for adaptive systems. Even though the formal verification is traditionally 
+an off-line procedure some progress have been achieved in integrating techniques like 
+model checking at runtime. The model checking approach involves specifying system behaviour
+formally or else using a model finding approach \cite{kikuchi2010configuration} 
+and exhaustively checking that systems properties hold at every system change. 
+The counter-examples can be used to resolve the policy conflicts as discussed by
+Calinescu and Kikuchi in their paper. The other methods include using a mathematical logic and theorem prover  
+to verify dynamic reconfiguration of cores at a runtime \cite{singh1999formal}. The proposed schema
+automatically generates the new specification of the system in a propositional logic and calls
+the theorem prover at the runtime to check the correctness. A lot of safety critical systems
+system has to preserve requirements for resources in case of system failures and in many instances this requires 
+reasoning in discrete-continuous domain which is best captured with hybrid models.
+A generic substitution model has been introduced by Babin et al. to reason about reconfigurable
+systems where system state has to be preserved \cite{Babin2016}. The biggest challenge in
+integrating formal verification at runtime is the tool scalability as particularly for
+model checking state-space explosion remains a big challenge.
 
+In the our work we introduced a formal model for analysing dynamically reconfigurable control
+systems \cite{mokhov2008conditional} and presented how verification conditions for our
+model can be expressed as SAT-problems \cite{mokhov2008verification}. 
 
+ %suitable models for analysing
+ %discrete-continuous systems are hybrid models. A lot of work has been done to allow
+ %modelling such a complex systems and one of the generic models for reconfigurable
+ %systems is presented by Babin et al. with a case study for maintaining safe energy
+ %level \cite{Babin2016}. The future work direction could involve integrating a similiar
+ %approach within our graph-based model.
+%Runtime systems adaptation is currently one the biggest challenges in formal
+%methods community. 
 %A number of formal models exists for specification of process-based systems for
 %instance Petri nets \cite{peterson1981petri} or Finite State Machines
 %\cite{nowick1993automatic} or else hardware description languages such as Verilog or
@@ -439,20 +477,17 @@ manner.
 %integrated tools like ACL2 or Isabelle into application development process
 %\cite{kaufmann2004some}. 
 
-%In the our work we introduced a formal model for dynamically reconfigurable control
-%systems \cite{mokhov2008conditional} and presented how verification conditions for our
-%model can be expressed as SAT-problems \cite{mokhov2008verification}. Our graph-based
-%approach combines both advantages of PNs and FSMs are is able of capturing concurrency
-%and choice in a compact and efficient way. A lot of changes in the system happens due
-%to the environment (plant) changes and the most suitable models for analysing
-%discrete-continuous systems are hybrid models. A lot of work has been done to allow
-%modelling such a complex systems and one of the generic models for reconfigurable
-%systems is presented by Babin et al. with a case study for maintaining safe energy
-%level \cite{Babin2016}. The future work direction could involve integrating a similiar
-%approach within our graph-based model.
 
 
+%Our graph-based
+%approach combines advantages of PNs and FSMs are is able of capturing concurrency
+%and choice in a compact and efficient way. 
 
+%A lot of changes in the system happens due
+%to the environment (plant) changes and the most
+
+
+\newpage
 \section{Using Domain-Specific Languages to improve the 
 productivity of REES designers}
 
@@ -592,9 +627,9 @@ encoding initial system specification provide verified-by-construction result.
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
-% \begin{thebibliography}{0}
+	\bibliographystyle{ieeetr}
+	\bibliography{main}
 
-% \end{thebibliography}
 
 
 

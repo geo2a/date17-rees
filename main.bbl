@@ -1,0 +1,44 @@
+\begin{thebibliography}{1}
+
+\bibitem{calinescu2010formal}
+R.~Calinescu and S.~Kikuchi, ``Formal methods@ runtime,'' in {\em Monterey
+  Workshop}, pp.~122--135, Springer, 2010.
+
+\bibitem{DBLP:journals/corr/BhattacharyyaMP16}
+A.~Bhattacharyya, A.~Mokhov, and K.~Pierce, ``An empirical comparison of
+  formalisms for modelling and analysis of dynamic reconfiguration of
+  dependable systems,'' {\em CoRR}, vol.~abs/1609.08531, 2016.
+
+\bibitem{Weyns:2012:SFM:2347583.2347592}
+D.~Weyns, M.~U. Iftikhar, D.~G. de~la Iglesia, and T.~Ahmad, ``A survey of
+  formal methods in self-adaptive systems,'' in {\em Proceedings of the Fifth
+  International C* Conference on Computer Science and Software Engineering},
+  C3S2E '12, (New York, NY, USA), pp.~67--79, ACM, 2012.
+
+\bibitem{kikuchi2010configuration}
+S.~Kikuchi and S.~Tsuchiya, ``Configuration procedure synthesis for complex
+  systems using model finder,'' in {\em Engineering of Complex Computer Systems
+  (ICECCS), 2010 15th IEEE International Conference on}, pp.~95--104, IEEE,
+  2010.
+
+\bibitem{singh1999formal}
+S.~Singh and C.~J. Lillieroth, ``Formal verification of reconfigurable cores,''
+  in {\em Field-Programmable Custom Computing Machines, 1999. FCCM'99.
+  Proceedings. Seventh Annual IEEE Symposium on}, pp.~25--32, IEEE, 1999.
+
+\bibitem{Babin2016}
+G.~Babin, Y.~A{\"i}t-Ameur, N.~K. Singh, and M.~Pantel, {\em A System
+  Substitution Mechanism for Hybrid Systems in Event-B}, pp.~106--121.
+\newblock Cham: Springer International Publishing, 2016.
+
+\bibitem{mokhov2008conditional}
+A.~Mokhov and A.~Yakovlev, ``Conditional partial order graphs and dynamically
+  reconfigurable control synthesis,'' in {\em Proceedings of the conference on
+  Design, automation and test in Europe}, pp.~1142--1147, ACM, 2008.
+
+\bibitem{mokhov2008verification}
+A.~Mokhov and A.~Yakovlev, ``Verification of conditional partial order
+  graphs,'' in {\em Application of Concurrency to System Design, 2008. ACSD
+  2008. 8th International Conference on}, pp.~128--137, IEEE, 2008.
+
+\end{thebibliography}

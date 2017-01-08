@@ -414,6 +414,84 @@ processor prototypes.
 % creates the second title. It will be ignored for other modes.
 \IEEEpeerreviewmaketitle
 
+\newpage	
+\section{Formal methods for runtime reconfigurability}
+
+
+%Systems reconfigurability is paramount for a number of safety critical systems classes.  
+%In general complex dependable systems must be self-adaptive to continually 
+%changing environment and ideally reconfigure dynamically without any 
+%human intervention.   
+
+%use mathematical approach.%\cite{calinescu2010formal}
+
+Formal methods - a mathematical model driven method provides a systematic approach
+for developing complex systems in a design reusable and correct-by-construction
+manner. The suitability of these techniques for a specification and verification of
+dynamically reconfigurable systems has been studied for some time now. A survey by 
+Calinescu and Kikuchi \cite{calinescu2010formal} overviews possible approaches in 
+using formal methods for adaptive systems at runtime. In an empirical comparison
+study by Bhattacharyya et al. \cite{DBLP:journals/corr/BhattacharyyaMP16}  different 
+formalisms for modelling suitability of reconfigurable systems were explored. The authors of the paper 
+\cite{Weyns:2012:SFM:2347583.2347592} review a decade of research on formal 
+methods for adaptive systems. Even though the formal verification is traditionally 
+an off-line procedure some progress have been achieved in integrating techniques like 
+model checking at runtime. The model checking approach involves specifying system behaviour
+formally or else using a model finding approach \cite{kikuchi2010configuration} 
+and exhaustively checking that systems properties hold at every system change. 
+The counter-examples can be used to resolve the policy conflicts as discussed by
+Calinescu and Kikuchi in their paper. The other methods include using a mathematical logic and theorem prover  
+to verify dynamic reconfiguration of cores at a runtime \cite{singh1999formal}. The proposed schema
+automatically generates the new specification of the system in a propositional logic and calls
+the theorem prover at the runtime to check the correctness. A lot of safety critical systems
+system has to preserve requirements for resources in case of system failures and in many instances this requires 
+reasoning in discrete-continuous domain which is best captured with hybrid models.
+A generic substitution model has been introduced by Babin et al. to reason about reconfigurable
+systems where system state has to be preserved \cite{Babin2016}. The biggest challenge in
+integrating formal verification at runtime is the tool scalability as particularly for
+model checking state-space explosion remains a big challenge.
+
+In the our work we introduced a formal model for analysing dynamically reconfigurable control
+systems \cite{mokhov2008conditional} and presented how verification conditions for our
+model can be expressed as SAT-problems \cite{mokhov2008verification}. 
+
+ %suitable models for analysing
+ %discrete-continuous systems are hybrid models. A lot of work has been done to allow
+ %modelling such a complex systems and one of the generic models for reconfigurable
+ %systems is presented by Babin et al. with a case study for maintaining safe energy
+ %level \cite{Babin2016}. The future work direction could involve integrating a similiar
+ %approach within our graph-based model.
+%Runtime systems adaptation is currently one the biggest challenges in formal
+%methods community. 
+%A number of formal models exists for specification of process-based systems for
+%instance Petri nets \cite{peterson1981petri} or Finite State Machines
+%\cite{nowick1993automatic} or else hardware description languages such as Verilog or
+% VHDL. The majority of industrial projects used formal techniques exactly for the
+%specification and modelling as has been shown by Woodcock et al.
+%\cite{woodcock2009formal}. The description of application (even formal) is not
+%ufficient to evidently demonstrate reliability of the system. The development
+%process must be accompanied with a form formal verification and mainly there exists
+%two formal verification techniques - theorem proving and model checking. The
+%principal of the model checking is to construct a finite-state model and by
+%exploring state-space exhaustively check whether the model meets requirements. The
+%alternative technique for automated verification is automated theorem proving which
+%does not rely on exploring the state-space. The benefits of automated theorem
+%proving in hardware design validation are increasingly recognised by the embedded
+%system industry \cite{clarke1996formal} and several companies have already
+%integrated tools like ACL2 or Isabelle into application development process
+%\cite{kaufmann2004some}. 
+
+
+
+%Our graph-based
+%approach combines advantages of PNs and FSMs are is able of capturing concurrency
+%and choice in a compact and efficient way. 
+
+%A lot of changes in the system happens due
+%to the environment (plant) changes and the most
+
+
+\newpage
 \section{Using Domain-Specific Languages to improve the 
 productivity of REES designers}
 
@@ -632,6 +710,7 @@ specifications.
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
+
 \begin{thebibliography}{10}
 
 \bibitem{CPOG}
@@ -657,8 +736,46 @@ specifications.
 	\emph{``Design of Processors with Reconfigurable Microarchitecture''}.
 	J. Low Power Electronics Application 2014, Volume 4(1). Pages 26-43.
 
-\end{thebibliography}
+\bibitem{calinescu2010formal}
+R. Calinescu, S. Kikuchi. \emph{``Formal methods@ runtime''}. In Proceedings of the Monterey
+Workshop, Pages 122–135, Springer, 2010.
 
+\bibitem{DBLP:journals/corr/BhattacharyyaMP16}
+A. Bhattacharyya, A. Mokhov, K. Pierce. \emph{``An Empirical Comparison of Formalisms for Modelling and Analysis of
+	Dynamic Reconfiguration of Dependable Systems''}. CoRR, Volume abs/1609.08531, 2016.
+
+\bibitem{Weyns:2012:SFM:2347583.2347592}
+D. Weyns, M. U. Iftikhar, D. G. de la Iglesia, T. Ahmad. \emph{``A
+survey of formal methods in self-adaptive systems''}. In Proceedings of the International C* Conference on 
+Computer Science and Software Engineering, C3S2E ’12, (New York, NY, USA), Pages 67–79, ACM, 2012.
+
+\bibitem{kikuchi2010configuration}
+S. Kikuchi, S. Tsuchiya. \emph{``Configuration procedure synthesis for complex systems using model finder''}. 
+In Proceedings of the 15th IEEE International Conference on Engineering of Complex Computer 
+Systems (ICECCS), Pages 95–104, IEEE, 2010.
+
+\bibitem{singh1999formal}
+S. Singh, C. J. Lillieroth. \emph{``Formal verification of reconfigurable core''}. 
+Seventh Annual IEEE Symposium on Field-Programmable Custom Computing Machines, 1999. FCCM’99. 
+Proceedings. , Pages 25–32, IEEE, 1999.
+
+\bibitem{Babin2016}
+G. Babin, Y. A{\"i}t-Ameur, N. K. Singh, M. Pantel. \emph{``A System Substi-
+tution Mechanism for Hybrid Systems in Event-B''}.  In Proceedings of the International
+Conference on Formal Engineering Methods, Pages 106-121. Springer International Publishing, 2016.
+
+\bibitem{mokhov2008conditional}
+A. Mokhov, A. Yakovlev. \emph{``Conditional partial order graphs and
+dynamically reconfigurable control synthesis''}. In Proceedings of the International Conference on 
+Design, automation and test in Europe, Pages 1142-1147. ACM, 2008.
+
+\bibitem{mokhov2008verification}
+A. Mokhov, A. Yakovlev.  \emph{``Verification of conditional partial order graphs''}.  In Proceedings of the 8th International Conference on Application of Concurrency to System Design, Pages 128–137, IEEE, ACSD, 2008.
+
+
+
+	
+\end{thebibliography}
 
 
 

@@ -414,37 +414,36 @@ processor prototypes.
 % creates the second title. It will be ignored for other modes.
 \IEEEpeerreviewmaketitle
 
-\newpage	
 \section{Formal methods for runtime reconfigurability}
 
 
-%Systems reconfigurability is paramount for a number of safety critical systems classes.  
-%In general complex dependable systems must be self-adaptive to continually 
-%changing environment and ideally reconfigure dynamically without any 
-%human intervention.   
+%Systems reconfigurability is paramount for a number of safety critical systems classes.
+%In general complex dependable systems must be self-adaptive to continually
+%changing environment and ideally reconfigure dynamically without any
+%human intervention.
 
 %use mathematical approach.%\cite{calinescu2010formal}
 
 Formal methods - a mathematical model driven method provides a systematic approach
 for developing complex systems in a design reusable and correct-by-construction
 manner. The suitability of these techniques for a specification and verification of
-dynamically reconfigurable systems has been studied for some time now. A survey by 
-Calinescu and Kikuchi \cite{calinescu2010formal} overviews possible approaches in 
+dynamically reconfigurable systems has been studied for some time now. A survey by
+Calinescu and Kikuchi \cite{calinescu2010formal} overviews possible approaches in
 using formal methods for adaptive systems at runtime. In an empirical comparison
-study by Bhattacharyya et al. \cite{DBLP:journals/corr/BhattacharyyaMP16}  different 
-formalisms for modelling suitability of reconfigurable systems were explored. The authors of the paper 
-\cite{Weyns:2012:SFM:2347583.2347592} review a decade of research on formal 
-methods for adaptive systems. Even though the formal verification is traditionally 
-an off-line procedure some progress have been achieved in integrating techniques like 
+study by Bhattacharyya et al. \cite{DBLP:journals/corr/BhattacharyyaMP16}  different
+formalisms for modelling suitability of reconfigurable systems were explored. The authors of the paper
+\cite{Weyns:2012:SFM:2347583.2347592} review a decade of research on formal
+methods for adaptive systems. Even though the formal verification is traditionally
+an off-line procedure some progress have been achieved in integrating techniques like
 model checking at runtime. The model checking approach involves specifying system behaviour
-formally or else using a model finding approach \cite{kikuchi2010configuration} 
-and exhaustively checking that systems properties hold at every system change. 
+formally or else using a model finding approach \cite{kikuchi2010configuration}
+and exhaustively checking that systems properties hold at every system change.
 The counter-examples can be used to resolve the policy conflicts as discussed by
-Calinescu and Kikuchi in their paper. The other methods include using a mathematical logic and theorem prover  
+Calinescu and Kikuchi in their paper. The other methods include using a mathematical logic and theorem prover
 to verify dynamic reconfiguration of cores at a runtime \cite{singh1999formal}. The proposed schema
 automatically generates the new specification of the system in a propositional logic and calls
 the theorem prover at the runtime to check the correctness. A lot of safety critical systems
-system has to preserve requirements for resources in case of system failures and in many instances this requires 
+system has to preserve requirements for resources in case of system failures and in many instances this requires
 reasoning in discrete-continuous domain which is best captured with hybrid models.
 A generic substitution model has been introduced by Babin et al. to reason about reconfigurable
 systems where system state has to be preserved \cite{Babin2016}. The biggest challenge in
@@ -452,8 +451,8 @@ integrating formal verification at runtime is the tool scalability as particular
 model checking state-space explosion remains a big challenge.
 
 In the our work we introduced a formal model for analysing dynamically reconfigurable control
-systems \cite{mokhov2008conditional} and presented how verification conditions for our
-model can be expressed as SAT-problems \cite{mokhov2008verification}. 
+systems~\cite{CPOG} and presented how verification conditions for our
+model can be expressed as SAT-problems.
 
  %suitable models for analysing
  %discrete-continuous systems are hybrid models. A lot of work has been done to allow
@@ -462,7 +461,7 @@ model can be expressed as SAT-problems \cite{mokhov2008verification}.
  %level \cite{Babin2016}. The future work direction could involve integrating a similiar
  %approach within our graph-based model.
 %Runtime systems adaptation is currently one the biggest challenges in formal
-%methods community. 
+%methods community.
 %A number of formal models exists for specification of process-based systems for
 %instance Petri nets \cite{peterson1981petri} or Finite State Machines
 %\cite{nowick1993automatic} or else hardware description languages such as Verilog or
@@ -479,32 +478,40 @@ model can be expressed as SAT-problems \cite{mokhov2008verification}.
 %proving in hardware design validation are increasingly recognised by the embedded
 %system industry \cite{clarke1996formal} and several companies have already
 %integrated tools like ACL2 or Isabelle into application development process
-%\cite{kaufmann2004some}. 
+%\cite{kaufmann2004some}.
 
 
 
 %Our graph-based
 %approach combines advantages of PNs and FSMs are is able of capturing concurrency
-%and choice in a compact and efficient way. 
+%and choice in a compact and efficient way.
 
 %A lot of changes in the system happens due
 %to the environment (plant) changes and the most
 
 
-\newpage
-\section{Using Domain-Specific Languages to improve the 
+\section{Using Domain-Specific Languages to improve the
 productivity of REES designers}
 
 Domain-Specific Languages (DSLs) are designed to have maximal expression for
-tasks of particular field, such as VHDL for hardware description or \LaTeX~for 
-typesetting. However, implementing a language from scratch may be tedious, 
-time-consuming and error-prone. Therefore, especially for prototyping purposes, 
+tasks of particular field, such as VHDL for hardware description or \LaTeX~for
+typesetting. However, implementing a language from scratch may be tedious,
+time-consuming and error-prone. Therefore, especially for prototyping purposes,
 DSLs could be embedded into existing general-purpose programming language.
 Modern typed functional programming languages such as Haskell offer a wide range
-of facilities for construction of embedded domain-specific languages (EDSLs) 
-that could benefit from features of lightweight verification provided by rich 
-type system and highly-tailored syntax achieved using various functional 
+of facilities for construction of embedded domain-specific languages (EDSLs)
+that could benefit from features of lightweight verification provided by rich
+type system and highly-tailored syntax achieved using various functional
 programming idioms.
+
+\begin{figure*}[ht!]
+\begin{center}
+    \includegraphics[width=\linewidth]{FIG/screen.png}
+    \caption{From the specification of the partial orders, to the synthesis and simulation
+    of the microcontroller. Screenshot from Workcraft.}
+    \label{fig:screenshot}
+\end{center}
+\end{figure*}
 
 In order to produce robust hardware, its vital to have qualitative formal
 specification methods, simulation facilities, and verifications techniques.
@@ -512,36 +519,36 @@ EDSLs may come in handy on every stage of hardware design: specification
 languages help to describe system functions in a declarative way, software
 simulation environment gives a possibility to evaluate system capabilities
 without building an expensive prototype, and advanced types of hosting language
-encoding initial system specification provide verified-by-construction result. 
+encoding initial system specification provide verified-by-construction result.
 
-Workcraft framework provide three DSLs: 
+Workcraft framework provide three DSLs:
 
 \begin{itemize}
-\item Signal Transition Graphs (STGs) --- a low-level (signal-level) DSL for 
+\item Signal Transition Graphs (STGs) --- a low-level (signal-level) DSL for
 specifying resilient asynchronous controllers.
-\item Conditional Partial Order Graphs (CPOGs) --- an intermediate-level 
-(microarchitecture-level) DSL for specifying processor instructions as 
+\item Conditional Partial Order Graphs (CPOGs) --- an intermediate-level
+(microarchitecture-level) DSL for specifying processor instructions as
 collections of partial orders.
-\item Dataflow Structures (DFSs) --- an intermediate-level (dataflow graphs) DSL 
+\item Dataflow Structures (DFSs) --- an intermediate-level (dataflow graphs) DSL
 for specifying reconfigurable dataflow graphs.
 \end{itemize}
 
-Workcraft is able to translate models described with support of these DSLs into 
-Verilog --- a standard low-level industrial design language for hardware 
-description.  
+Workcraft is able to translate models described with support of these DSLs into
+Verilog --- a standard low-level industrial design language for hardware
+description.
 
 In our work, we concentrate on bridging Event-B --- a high-level DSL
-for formal specification of system requirements and system reconfiguration, 
-supported by Rodin toolset, and DSLs provided by Workcraft. As a 
-prototype of a bridging language, we develop Farfalle --- 
-an intermediate-level DSL embedded into Haskell that 
+for formal specification of system requirements and system reconfiguration,
+supported by Rodin toolset, and DSLs provided by Workcraft. As a
+prototype of a bridging language, we develop Farfalle ---
+an intermediate-level DSL embedded into Haskell that
 is focused on description of processor microarchitectures.
-Haskell provide a very expressive tools for description of data and 
-computations. A concept of \texttt{Monad} gives a powerful abstraction for 
-building customized type-safe EDSLs, and syntactical support for monadic 
+Haskell provide a very expressive tools for description of data and
+computations. A concept of \texttt{Monad} gives a powerful abstraction for
+building customized type-safe EDSLs, and syntactical support for monadic
 \texttt{do}-notation makes this embedding perfectly smooth. Therefore, Farfalle
-has means to reduce errors in resilient systems design and give engineers a fast 
-and safe prototyping tool.      
+has means to reduce errors in resilient systems design and give engineers a fast
+and safe prototyping tool.
 
 
 \section{Tool support}
@@ -562,15 +569,6 @@ Rodin and hardware synthesis toolsets such as Workcraft. Having a scalable, yet
 reusable language would be beneficial for resiliency. The instruction correctness, indeed,
 could be simulated and formally verified, the partial order should be derived from the
 specifications.
-
-\begin{figure*}[ht!]
-\begin{center}
-	\includegraphics[width=\linewidth]{FIG/screen.png}
-	\caption{From the specification of the partial orders, to the synthesis and simulation
-	of the microcontroller. Screenshot from Workcraft.}
-	\label{fig:screenshot}
-\end{center}
-\end{figure*}
 
 The CPOG and Dataflow Structures (DFS)~\cite{DFS} were used together to design an asynchronous
 reconfigurable pipeline for the computation of the ordinal pattern encoding~\cite{OPE}. CPOG was used
@@ -713,14 +711,14 @@ specifications.
 
 \begin{thebibliography}{10}
 
+\bibitem{workcraft_web}
+    \textsc{Workcraft} homepage. \url{http://www.workcraft.org/}.
+
 \bibitem{CPOG}
-	A. Mokhov, A. Yakovlev. \emph{``Conditional partial order graphs: Model, 
+	A. Mokhov, A. Yakovlev. \emph{``Conditional partial order graphs: Model,
 	synthesis, and application''}. IEEE Transactions on Computers, Volume 59,
 	Pages 1480-1493, November 2010.
-	
-\bibitem{workcraft_web}
-	\textsc{Workcraft} homepage. \url{http://www.workcraft.org/}.	
-	
+
 \bibitem{DFS}
 	D. Sokolov, I. Poliakov, A. Yakovlev. \emph{``Analysis of static data flow structures''}.
 	Fundamenta Informaticae, volume 88,issue 4, pages 581 - 610. Publisher IOS Press. 2008.
@@ -730,7 +728,7 @@ specifications.
 	\emph{``Pipelined reconfigurable accelerator for ordinal pattern encoding''}.
 	Proc. Application-specific Systems, Architectures and Processors~(ASAP),
 	pp.~194--201, 2014.
-	
+
 \bibitem{rec-proc}
 	A. Mokhov, M. Rykunov, D. Sokolov, A. Yakovlev.
 	\emph{``Design of Processors with Reconfigurable Microarchitecture''}.
@@ -746,17 +744,17 @@ A. Bhattacharyya, A. Mokhov, K. Pierce. \emph{``An Empirical Comparison of Forma
 
 \bibitem{Weyns:2012:SFM:2347583.2347592}
 D. Weyns, M. U. Iftikhar, D. G. de la Iglesia, T. Ahmad. \emph{``A
-survey of formal methods in self-adaptive systems''}. In Proceedings of the International C* Conference on 
+survey of formal methods in self-adaptive systems''}. In Proceedings of the International C* Conference on
 Computer Science and Software Engineering, C3S2E ’12, (New York, NY, USA), Pages 67–79, ACM, 2012.
 
 \bibitem{kikuchi2010configuration}
-S. Kikuchi, S. Tsuchiya. \emph{``Configuration procedure synthesis for complex systems using model finder''}. 
-In Proceedings of the 15th IEEE International Conference on Engineering of Complex Computer 
+S. Kikuchi, S. Tsuchiya. \emph{``Configuration procedure synthesis for complex systems using model finder''}.
+In Proceedings of the 15th IEEE International Conference on Engineering of Complex Computer
 Systems (ICECCS), Pages 95–104, IEEE, 2010.
 
 \bibitem{singh1999formal}
-S. Singh, C. J. Lillieroth. \emph{``Formal verification of reconfigurable core''}. 
-Seventh Annual IEEE Symposium on Field-Programmable Custom Computing Machines, 1999. FCCM’99. 
+S. Singh, C. J. Lillieroth. \emph{``Formal verification of reconfigurable core''}.
+Seventh Annual IEEE Symposium on Field-Programmable Custom Computing Machines, 1999. FCCM’99.
 Proceedings. , Pages 25–32, IEEE, 1999.
 
 \bibitem{Babin2016}
@@ -764,17 +762,6 @@ G. Babin, Y. A{\"i}t-Ameur, N. K. Singh, M. Pantel. \emph{``A System Substi-
 tution Mechanism for Hybrid Systems in Event-B''}.  In Proceedings of the International
 Conference on Formal Engineering Methods, Pages 106-121. Springer International Publishing, 2016.
 
-\bibitem{mokhov2008conditional}
-A. Mokhov, A. Yakovlev. \emph{``Conditional partial order graphs and
-dynamically reconfigurable control synthesis''}. In Proceedings of the International Conference on 
-Design, automation and test in Europe, Pages 1142-1147. ACM, 2008.
-
-\bibitem{mokhov2008verification}
-A. Mokhov, A. Yakovlev.  \emph{``Verification of conditional partial order graphs''}.  In Proceedings of the 8th International Conference on Application of Concurrency to System Design, Pages 128–137, IEEE, ACSD, 2008.
-
-
-
-	
 \end{thebibliography}
 
 

@@ -546,10 +546,36 @@ is focused on description of processor microarchitectures.
 Haskell provide a very expressive tools for description of data and
 computations. A concept of \texttt{Monad} gives a powerful abstraction for
 building customized type-safe EDSLs, and syntactical support for monadic
-\texttt{do}-notation makes this embedding perfectly smooth. Therefore, Farfalle
-has means to reduce errors in resilient systems design and give engineers a fast
-and safe prototyping tool.
+\texttt{do}-notation makes this embedding perfectly smooth.
 
+Consider example illustrating main Farfalle facilities.
+
+\begin{verbatim}
+class Monad m => Microprogram m where
+    data Register m
+    pc, opcode    :: Register m
+    readMemory    :: Address -> m Value
+    writeMemory   :: Address -> Value -> m ()
+    readRegister  :: Register m -> m Value
+    writeRegister :: Register m -> Value -> m ()
+\end{verbatim}
+
+Here, a microprogram is represented as a typeclass with associated
+data type \texttt{Register m}. This class provides abstract interface for
+microprogram description. This interface may be
+implemented with Haskell's typeclass instances to provide concrete behaviour.
+Being a \texttt{Monad}, \texttt{Microprogram m} may be used with
+\texttt{do}-notation and able to act as an embedded DSL.
+
+\begin{verbatim}
+increment :: Microprogram m => Register m -> m ()
+increment register = do
+    value <- readRegister register
+    writeRegister register (value + 1)
+\end{verbatim}
+
+As a result, Farfalle has means to reduce errors in resilient systems design
+and give engineers a fast and safe prototyping tool.
 
 \section{Tool support}
 

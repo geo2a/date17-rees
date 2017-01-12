@@ -301,7 +301,7 @@ Modern functional programming languages such as Haskell offer a
 wide range of facilities for construction of \emph{Embedded Domain-Specific Languages}
 (EDSLs) that benefit from features of lightweight formal verification provided by
 the rich type system and highly-tailored syntax achieved using various functional
-programming idioms~[X].
+programming idioms~\cite{HudakDSLs}.
 
 \begin{figure*}[ht!]
 \begin{center}
@@ -343,34 +343,33 @@ for formal specification of system requirements and reconfiguration,
 and DSLs provided by \textsc{Workcraft}. As a prototype of a bridging language,
 we develop \emph{Farfalle}, an intermediate-level DSL embedded in Haskell for
 the description of reconfigurable processor microarchitectures.
-Haskell provides powerful abstractions, e.g. the \texttt{Monad} type class~[Y],
+Haskell provides powerful abstractions, e.g. the \texttt{Monad} type
+class~\cite{WadlerMonads},
 that help to build custom EDSLs with strong static typing and compositional
 semantics.
 
-Consider an example illustrating main Farfalle facilities.
+Here are three examples of \emph{Farfalle} code, showing power of Haskell's
+monadic \texttt{do}-notation for building composable EDSL programs in clear
+imperative step-by-step manner: each line represents one command.
+
+Register increment has two steps: fetching value and putting an
+incremented one back.
 
 \begin{verbatim}
-class Monad m => Microprogram m where
-    data Register m
-    pc, opcode    :: Register m
-    readMemory    :: Address -> m Value
-    writeMemory   :: Address -> Value -> m ()
-    readRegister  :: Register m -> m Value
-    writeRegister :: Register m -> Value -> m ()
-\end{verbatim}
-
-Here, a microprogram is represented as a typeclass with associated
-data type \texttt{Register m}. This class provides abstract interface for
-microprogram description. This interface may be
-implemented with Haskell's typeclass instances to provide concrete behaviour.
-Being a \texttt{Monad}, \texttt{Microprogram m} may be used with
-\texttt{do}-notation and able to act as an embedded DSL.
-
-\begin{verbatim}
-increment :: Microprogram m => Register m -> m ()
 increment register = do
     value <- readRegister register
     writeRegister register (value + 1)
+\end{verbatim}
+
+In order to fetch instruction opcodes and immediate arguments, one need to
+increment program counter and then fetch value it points to. Note a natural
+usage of previously defined \texttt{increment} function.
+
+\begin{verbatim}
+fetchArgument = do
+    increment pc
+    address <- readRegister pc
+    readMemory address
 \end{verbatim}
 
 As a result, Farfalle has means to reduce errors in resilient systems design
@@ -536,7 +535,7 @@ specifications.
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
 
-\begin{thebibliography}{10}
+\begin{thebibliography}{12}
 
 \bibitem{calinescu2010formal}
 R. Calinescu, S. Kikuchi. \emph{``Formal methods @ runtime''}. In Proceedings of the Monterey Workshop, Pages 122–135, Springer, 2010.
@@ -570,6 +569,16 @@ J. Cortadella et al. \emph{``Logic synthesis for asynchronous controllers and in
   \emph{``Pipelined reconfigurable accelerator for ordinal pattern encoding''}.
   IEEE Conference on Application-specific Systems, Architectures and Processors~(ASAP), 2014,
   pp.~194--201.
+
+\bibitem{WadlerMonads}
+  Philip Wadler.
+  \emph{``Monads for functional programming''}.
+  Advanced Functional Programming, Bastad Spring School, 1995.
+
+\bibitem{HudakDSLs}
+  Hudak, P.
+  \emph{``Modular Domain Specific Languages and Tools''}.
+  Proceedings of the 5th International Conference on Software Reuse, p. 134, 1998.
 
 % \bibitem{Weyns:2012:SFM:2347583.2347592}
 % D. Weyns, M. U. Iftikhar, D. G. de la Iglesia, T. Ahmad. \emph{``A

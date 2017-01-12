@@ -234,7 +234,7 @@ The methodology is supported by open-source EDA toolsuite
 \textsc{Workcraft}~\cite{workcraft_web} and validated in silicon~\cite{rec-proc}.
 In the rest of the paper we discuss our current work on
 providing fast prototyping of reconfigurable resilient processing cores in
-\textsc{Workcraft} using a domain-specific language (DSL) for
+\textsc{Workcraft} using a domain-specific language for
 microarchitecture description (Section~\ref{sec:dsl}), and report on our
 experience in designing resilient processing cores using this methodology
 (Section~\ref{sec:tools}).
@@ -290,19 +290,18 @@ experience in designing resilient processing cores using this methodology
 %approach combines advantages of PNs and FSMs are is able of capturing concurrency
 %and choice in a compact and efficient way.
 
-\section{Using Domain-Specific Languages to improve the
-productivity of REES designers\label{sec:dsl}}
+\section{DSLs for improved design productivity\label{sec:dsl}}
 
-Domain-Specific Languages (DSLs) are designed to have maximal expression for
-tasks of particular field, such as VHDL for hardware description or \LaTeX~for
-typesetting. However, implementing a language from scratch may be tedious,
-time-consuming and error-prone. Therefore, especially for prototyping purposes,
-DSLs could be embedded into existing general-purpose programming language.
-Modern typed functional programming languages such as Haskell offer a wide range
-of facilities for construction of embedded domain-specific languages (EDSLs)
-that could benefit from features of lightweight verification provided by rich
-type system and highly-tailored syntax achieved using various functional
-programming idioms.
+\emph{Domain-Specific Languages} (DSLs) are designed to have a maximal expression for
+tasks in a particular domain (for example, VHDL for hardware description or
+\LaTeX~for typesetting). However, implementing a language from scratch may be tedious,
+time-consuming and error-prone. Therefore, DSLs are often embedded into existing general-purpose programming languages, which is particularly convenient for
+prototyping purposes.
+Modern functional programming languages such as Haskell~[X] offer a
+wide range of facilities for construction of \emph{Embedded Domain-Specific Languages}
+(EDSLs) that benefit from features of lightweight formal verification provided by
+the rich type system and highly-tailored syntax achieved using various functional
+programming idioms~[Y].
 
 \begin{figure*}[ht!]
 \begin{center}
@@ -313,42 +312,40 @@ programming idioms.
 \end{center}
 \end{figure*}
 
-In order to produce robust hardware, its vital to have qualitative formal
+To design resilient and reconfigurable systems, it is vital to have formal
 specification methods, simulation facilities, and verifications techniques.
-EDSLs may come in handy on every stage of hardware design: specification
-languages help to describe system functions in a declarative way, software
-simulation environment gives a possibility to evaluate system capabilities
-without building an expensive prototype, and advanced types of hosting language
-encoding initial system specification provide verified-by-construction result.
+EDSLs can increase the productivity at every stage of hardware design:
+high-level specification
+languages help to describe the system functionality in a declarative way, software
+simulation environments allow to evaluate the system capabilities
+without fabricating an expensive prototype, and advanced types of the host language
+provide compiler-checked correctness guarantees for synthesis.
 
-Workcraft framework provide three DSLs:
+The \textsc{Workcraft} framework provides three DSLs:
 
 \begin{itemize}
-\item Signal Transition Graphs (STGs) --- a low-level (signal-level) DSL for
-specifying resilient asynchronous controllers.
-\item Conditional Partial Order Graphs (CPOGs) --- an intermediate-level
-(microarchitecture-level) DSL for specifying processor instructions as
-collections of partial orders.
-\item Dataflow Structures (DFSs) --- an intermediate-level (dataflow graphs) DSL
-for specifying reconfigurable dataflow graphs.
+\item Signal Transition Graphs (STGs), a signal-level DSL for
+specifying resilient asynchronous controllers~\cite{STG}.
+\item Conditional Partial Order Graphs (CPOGs), a DSL for specifying
+processor microarchitectures~\cite{ISA-formal}.
+\item Dataflow Structures (DFSs), a dataflow-level DSL
+for specifying dataflow computation graphs~\cite{DFS}.
 \end{itemize}
 
-Workcraft is able to translate models described with support of these DSLs into
-Verilog --- a standard low-level industrial design language for hardware
-description.
+\textsc{Workcraft} can synthesise and export models described in these DSLs into
+Verilog, a standard low-level language for hardware description, supported
+by conventional tool-chain.
 
-In our work, we concentrate on bridging Event-B --- a high-level DSL
-for formal specification of system requirements and system reconfiguration,
-supported by Rodin toolset, and DSLs provided by Workcraft. As a
-prototype of a bridging language, we develop Farfalle ---
-an intermediate-level DSL embedded into Haskell that
-is focused on description of processor microarchitectures.
-Haskell provide a very expressive tools for description of data and
-computations. A concept of \texttt{Monad} gives a powerful abstraction for
-building customized type-safe EDSLs, and syntactical support for monadic
-\texttt{do}-notation makes this embedding perfectly smooth.
+In our work, we focus on bridging Event-B~\cite{EventB}, a high-level DSL
+for formal specification of system requirements and reconfiguration,
+and DSLs provided by \textsc{Workcraft}. As a prototype of a bridging language,
+we develop \emph{Farfalle}, an intermediate-level DSL embedded in Haskell for
+the description of reconfigurable processor microarchitectures.
+Haskell provides powerful abstractions, e.g. the \texttt{Monad} type class~[Z],
+that help to build custom EDSLs with strong static typing and compositional
+semantics.
 
-Consider example illustrating main Farfalle facilities.
+Consider an example illustrating main Farfalle facilities.
 
 \begin{verbatim}
 class Monad m => Microprogram m where
@@ -382,7 +379,7 @@ and give engineers a fast and safe prototyping tool.
 Formalising the design specifications is a good approach to the development of a resilient
 system. Specifications, represented via DSL, can indeed be verified and
 simulated, targeting an error-free system. Workcraft~\cite{workcraft_web} provides the support for different
-models, this can help the design for resiliency. Conditional partial order graphs (CPOG)~\cite{CPOG}
+models, this can help the design for resiliency. Conditional partial order graphs (CPOG)~\cite{ISA-formal}
 (available in the Workcraft framework), for instance, can support the development of
 processor instruction sets. In Figure \ref{fig:screenshot}, all the steps from the
 specification of each instruction, to the synthesis of the final microcontroller are
@@ -544,31 +541,31 @@ R. Calinescu, S. Kikuchi. \emph{``Formal methods @ runtime''}. In Proceedings of
 A. Bhattacharyya, A. Mokhov, K. Pierce. \emph{``An Empirical Comparison of Formalisms for Modelling and Analysis of Dynamic Reconfiguration of Dependable Systems''}. Formal Aspects of Computing, Springer, 2016.
 
 \bibitem{ISA-formal}
-A. Mokhov, A. Iliasov, D. Sokolov, M. Rykunov, A. Yakovlev, A. Romanovsky.
-\emph{``Synthesis of processor instruction sets from high-level ISA specifications''}. IEEE Transactions on Computers, 63(6), 1552-1566.
+A. Mokhov et al.
+\emph{``Synthesis of processor instruction sets from high-level ISA specifications''}. IEEE Transaction on Computers 2014, vol. 63(6).
 
 \bibitem{workcraft_web}
-    \textsc{Workcraft} homepage. \url{http://www.workcraft.org/}.
+    \textsc{Workcraft} framework homepage: \url{http://www.workcraft.org/}.
 
 \bibitem{rec-proc}
   A. Mokhov, M. Rykunov, D. Sokolov, A. Yakovlev.
   \emph{``Design of Processors with Reconfigurable Microarchitecture''}.
-  J. Low Power Electronics Application 2014, Volume 4(1). Pages 26-43.
+  J. Low Power Electronics Application, 2014, vol. 4(1), pp. 26-43.
 
-\bibitem{CPOG}
-  A. Mokhov, A. Yakovlev. \emph{``Conditional partial order graphs: Model,
-  synthesis, and application''}. IEEE Transactions on Computers, Volume 59,
-  Pages 1480-1493, November 2010.
+\bibitem{STG}
+J. Cortadella et al. \emph{``Logic synthesis for asynchronous controllers and interfaces''}, Springer, 2012.
 
 \bibitem{DFS}
-  D. Sokolov, I. Poliakov, A. Yakovlev. \emph{``Analysis of static data flow structures''}.
-  Fundamenta Informaticae, volume 88,issue 4, pages 581 - 610. Publisher IOS Press. 2008.
+  D. Sokolov, I. Poliakov, A. Yakovlev. \emph{``Analysis of static data flow structures''}. Fundamenta Informaticae, vol. 88(4), pp. 581-610, 2008.
+
+\bibitem{EventB}
+  J-R. Abrial. \emph{Modeling in Event-B: system and software engineering}. Cambridge University Press, 2010.
 
 \bibitem{OPE}
   C. Guo, W. Luk, S. Weston:
   \emph{``Pipelined reconfigurable accelerator for ordinal pattern encoding''}.
-  Proc. Application-specific Systems, Architectures and Processors~(ASAP),
-  pp.~194--201, 2014.
+  IEEE Conference on Application-specific Systems, Architectures and Processors~(ASAP), 2014,
+  pp.~194--201.
 
 % \bibitem{Weyns:2012:SFM:2347583.2347592}
 % D. Weyns, M. U. Iftikhar, D. G. de la Iglesia, T. Ahmad. \emph{``A

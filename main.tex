@@ -297,19 +297,21 @@ tasks in a particular domain (for example, VHDL for hardware description or
 \LaTeX~for typesetting). However, implementing a language from scratch may be tedious,
 time-consuming and error-prone. Therefore, DSLs are often embedded into existing general-purpose programming languages, which is particularly convenient for
 prototyping purposes.
-Modern functional programming languages such as Haskell~[X] offer a
+Modern functional programming languages such as Haskell offer a
 wide range of facilities for construction of \emph{Embedded Domain-Specific Languages}
 (EDSLs) that benefit from features of lightweight formal verification provided by
 the rich type system and highly-tailored syntax achieved using various functional
-programming idioms~[Y].
+programming idioms~[X].
 
 \begin{figure*}[ht!]
 \begin{center}
-    \includegraphics[width=\linewidth]{FIG/screen.png}
-    \caption{From the specification of the partial orders, to the synthesis and simulation
-    of the microcontroller. Screenshot from Workcraft.}
+    \includegraphics[width=0.95\linewidth]{FIG/screen.png}
+    \vspace{-2mm}
+    \caption{From the specification of instructions, to the synthesis and simulation
+    of the microcontroller. Screenshot from \textsc{Workcraft}.}
     \label{fig:screenshot}
 \end{center}
+\vspace{-6mm}
 \end{figure*}
 
 To design resilient and reconfigurable systems, it is vital to have formal
@@ -341,7 +343,7 @@ for formal specification of system requirements and reconfiguration,
 and DSLs provided by \textsc{Workcraft}. As a prototype of a bridging language,
 we develop \emph{Farfalle}, an intermediate-level DSL embedded in Haskell for
 the description of reconfigurable processor microarchitectures.
-Haskell provides powerful abstractions, e.g. the \texttt{Monad} type class~[Z],
+Haskell provides powerful abstractions, e.g. the \texttt{Monad} type class~[Y],
 that help to build custom EDSLs with strong static typing and compositional
 semantics.
 
@@ -393,6 +395,17 @@ reusable language would be beneficial for resiliency. The instruction correctnes
 could be simulated and formally verified, the partial order should be derived from the
 specifications.
 
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=0.8\linewidth]{FIG/ope-chip.pdf}
+  \vspace{-3mm}
+  \caption{Resiliency of asynchronous control under unstable voltage.}
+  \label{fig:voltage-resiliency}
+\end{center}
+\vspace{-3mm}
+\end{figure}
+
+
 The CPOG and Dataflow Structures (DFS)~\cite{DFS} were used together to design an asynchronous
 reconfigurable pipeline for the computation of the ordinal pattern encoding~\cite{OPE}. CPOG was used
 for the design of the control unit, which is used for the reconfigurability of the pipeline
@@ -404,15 +417,6 @@ resiliency of the chip to the voltage variation. Workcraft, and the tools that t
 comes with, have been also validated with the design of an asynchronous processor (Intel
 8051~\cite{rec-proc}), the flow can still be improved by adopting DSL for formalising system
 specifications.
-
-\begin{figure}[ht!]
-\begin{center}
-	\includegraphics[width=\linewidth]{FIG/ope-chip.pdf}
-	\caption{Voltage resiliency of the asynchronous reconfigurable pipeline, implemented in
-	an ASIC with the 90nm TSMC technology.}
-	\label{fig:voltage-resiliency}
-\end{center}
-\end{figure}
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.

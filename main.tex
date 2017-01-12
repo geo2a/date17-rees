@@ -172,6 +172,7 @@ Maxim Rykunov\IEEEauthorrefmark{4}}
 \IEEEauthorblockA{\IEEEauthorrefmark{2}Southern Federal University, Rostov-on-Don, Russia}
 \IEEEauthorblockA{\IEEEauthorrefmark{3}Newcastle University, Newcastle upon Tyne, UK}
 \IEEEauthorblockA{\IEEEauthorrefmark{4}IMEC, Leuven, Belgium}
+\vspace{-6mm}
 }
 
 \maketitle
@@ -184,31 +185,29 @@ processing cores with resilient microarchitecture. The resilience is
 achieved by equipping the core with a family of datapath components
 optimised for different operating modes and a flexible control
 structure that allows to change an instruction implementation in
-runtime depending on the environmental conditions and application
+runtime depending on the conditions and application
 requirements. We use asynchronous design techniques to achieve
 \emph{short-term resilience}, i.e. survival in extreme environmental
-conditions, such as near-threshold and/or unstable voltage supply.
-\emph{Long-term resilience} is achieved by providing mechanisms for
+conditions, such as near-threshold or unstable voltage supply.
+\emph{Long-term resilience} is achieved through
 runtime reconfiguration of the processor microarchitecture, which
 is essential for safety-critical applications, such as biomedical
 implants that cannot be taken offline for maintenance. By using
 formal methods one can guarantee the correctness and uninterrupted
 service during such runtime reconfigurations.
 
-The presented methodology is supported by open-source EDA tool
-\textsc{Workcraft}, and has been validated in silicon by successfully
-fabricating two chips: Intel 8051 processing core and a
-reconfigurable dataflow pipeline for ordinal pattern analysis.
+The presented methodology is supported by open-source tool
+\textsc{Workcraft}, and has been validated by fabricating
+two ASICs: an Intel 8051 processing core and a
+reconfigurable dataflow accelerator.
 To facilitate fast prototyping of resilient processing cores, we
-propose a domain-specific language for formal specification,
-compiler-checked documentation, and software-level simulation of
-processor prototypes.
+introduce a domain-specific language for their formal specification,
+software-level simulation and hardware synthesis.
 \end{abstract}
 
 % no keywords
 
 \IEEEpeerreviewmaketitle
-\vspace{-1mm}
 \section{Formal methods for resilient systems}
 \vspace{-1mm}
 
@@ -237,7 +236,7 @@ providing fast prototyping of reconfigurable resilient processing cores in
 \textsc{Workcraft} using a domain-specific language for
 microarchitecture description (Section~\ref{sec:dsl}), and report on our
 experience in designing resilient processing cores using this methodology
-(Section~\ref{sec:tools}).
+(Section~\ref{sec:experience}).
 
 % The authors of the paper~\cite{Weyns:2012:SFM:2347583.2347592}
 % review a decade of research on formal
@@ -306,12 +305,12 @@ programming idioms~\cite{HudakDSLs}.
 \begin{figure*}[ht!]
 \begin{center}
     \includegraphics[width=0.95\linewidth]{FIG/screen.png}
-    \vspace{-2mm}
-    \caption{From the specification of instructions, to the synthesis and simulation
-    of the microcontroller. Screenshot from \textsc{Workcraft}.}
+    \vspace{-3mm}
+    \caption{From formal specification to hardware synthesis and
+    simulation of a simple 3-instruction processing core. A screenshot of \textsc{Workcraft}.}
     \label{fig:screenshot}
 \end{center}
-\vspace{-6mm}
+\vspace{-7mm}
 \end{figure*}
 
 To design resilient and reconfigurable systems, it is vital to have formal
@@ -329,14 +328,15 @@ The \textsc{Workcraft} framework provides three DSLs:
 \item Signal Transition Graphs (STGs), a signal-level DSL for
 specifying resilient asynchronous controllers~\cite{STG}.
 \item Conditional Partial Order Graphs (CPOGs), a DSL for specifying
-processor microarchitectures~\cite{ISA-formal}.
+reconfigurable processor microarchitectures supported by optimal
+instruction encoding algorithms~\cite{ISA-formal}.
 \item Dataflow Structures (DFSs), a dataflow-level DSL
 for specifying dataflow computation graphs~\cite{DFS}.
 \end{itemize}
 
 \textsc{Workcraft} can synthesise and export models described in these DSLs into
-Verilog, a standard low-level language for hardware description, supported
-by conventional tool-chain.
+Verilog, a low-level language for hardware description, supported
+by conventional EDA tool chain.
 
 In our work, we focus on bridging Event-B~\cite{EventB}, a high-level DSL
 for formal specification of system requirements and reconfiguration,
@@ -353,46 +353,66 @@ monadic \texttt{do}-notation for building composable EDSL programs in clear
 imperative step-by-step manner. To \emph{increment a register}, one needs to
 read the value it contains and then write the incremented value back:
 
+\vspace{-2mm}
 \begin{verbatim}
 increment register = do
     value <- readRegister register
-    writeRegister register (value + 1)
+   writeRegister register (value + 1)
 \end{verbatim}
+\vspace{-1mm}
 
 To \emph{fetch an immediate argument}, one needs to
 increment the program counter and then fetch the value it points to. Note a
 natural usage of the previously defined \texttt{increment} function:
 
+\vspace{-2mm}
 \begin{verbatim}
 fetchArgument = do
     increment pc
     address <- readRegister pc
     readMemory address
 \end{verbatim}
+\vspace{-1mm}
 
 \emph{Farfalle} code can be translated both to Event-B notation for formal
 verification and to one of \textsc{Workcraft}'s DSLs, e.g. a CPOG model for
 further hardware synthesis, as illustrated in Fig.~\ref{fig:screenshot},
 providing engineers a fast and safe prototyping tool.
 
-\section{Tool support\label{sec:tools}}
+\vspace{-0.5mm}
+\section{Prototypes of resilient processing cores\label{sec:experience}}
+\vspace{-0.5mm}
 
-Formalising the design specifications is a good approach to the development of a resilient
-system. Specifications, represented via DSL, can indeed be verified and
-simulated, targeting an error-free system. Workcraft~\cite{workcraft_web} provides the support for different
-models, this can help the design for resiliency. Conditional partial order graphs (CPOG)~\cite{ISA-formal}
-(available in the Workcraft framework), for instance, can support the development of
-processor instruction sets. In Figure \ref{fig:screenshot}, all the steps from the
-specification of each instruction, to the synthesis of the final microcontroller are
-depicted. Instructions can be specified in the form of algebraic equations at first, then the
-graphs can be imported, encoded and synthesised in the form of a microcontroller. The latter
-can be mapped with the usage of a technology library and eventually simulated: internal and
-external signals can be visualised via digital waveforms, where dependencies among signals
-are shown. we are developing a DSL for bridging the gap between formal methods toolsets such
-Rodin and hardware synthesis toolsets such as Workcraft. Having a scalable, yet
-reusable language would be beneficial for resiliency. The instruction correctness, indeed,
-could be simulated and formally verified, the partial order should be derived from the
-specifications.
+% Formalising the design specifications is a good approach to the development of a
+% resilient system. Specifications, represented via DSL, can indeed be verified and
+% simulated, targeting an error-free system. Workcraft~\cite{workcraft_web} provides the support for different models, this can help the design for resiliency. Conditional partial order graphs (CPOG)~\cite{ISA-formal} (available in the Workcraft framework), for instance, can support the development of processor instruction sets.
+% In Figure \ref{fig:screenshot}, all the steps from the
+% specification of each instruction, to the synthesis of the final microcontroller are
+% depicted.
+
+% Instructions can be specified in the form of algebraic equations at first, then the
+% graphs can be imported, encoded and synthesised in the form of a microcontroller. The latter
+% can be mapped with the usage of a technology library and eventually simulated: internal and
+% external signals can be visualised via digital waveforms, where dependencies among signals
+% are shown. we are developing a DSL for bridging the gap between formal methods toolsets such
+% Rodin and hardware synthesis toolsets such as Workcraft. Having a scalable, yet
+% reusable language would be beneficial for resiliency. The instruction correctness, indeed,
+% could be simulated and formally verified, the partial order should be derived from the
+% specifications.
+
+We validated the design flow in Fig.~\ref{fig:screenshot} by fabricating two
+ASIC prototypes: an Intel 8051 processing core~\cite{rec-proc} and a dataflow
+accelerator. Both were designed to survive in a wide range of voltages and supported
+runtime reconfigurability.
+
+Intel 8051 chip was fabricated in the 130nm process using the standard cell
+library by STMicroelectronics, with the nominal supply voltage of 1.2V. Thanks
+to runtime reconfigurability the chip could operate
+in the voltage range 0.22-1.5V. Parts of the chip failed at certain voltages:
+the SRAM failed below 0.89V, and the
+conventional program counter was unreliable below 0.74V. However, the
+processing core, designed using the presented methodology, operated
+correctly down to 0.22V.
 
 \begin{figure}[h!]
 \begin{center}
@@ -401,141 +421,18 @@ specifications.
   \caption{Resiliency of asynchronous control under unstable voltage.}
   \label{fig:voltage-resiliency}
 \end{center}
-\vspace{-3mm}
+\vspace{-8mm}
 \end{figure}
 
-
-The CPOG and Dataflow Structures (DFS)~\cite{DFS} were used together to design an asynchronous
-reconfigurable pipeline for the computation of the ordinal pattern encoding~\cite{OPE}. CPOG was used
-for the design of the control unit, which is used for the reconfigurability of the pipeline
-(3-18 stages). DFS supported the design of the datapath asynchronous components instead. Each
-module has indeed been modelled and simulated in Workcraft at first, and then translated into
-hardware description (Verilog). The DFS model matches the HDL description, the asynchronous
-4-phase dual rail protocol is implemented. Figure \ref{fig:voltage-resiliency} shows the
-resiliency of the chip to the voltage variation. Workcraft, and the tools that the framework
-comes with, have been also validated with the design of an asynchronous processor (Intel
-8051~\cite{rec-proc}), the flow can still be improved by adopting DSL for formalising system
-specifications.
-
-% An example of a floating figure using the graphicx package.
-% Note that \label must occur AFTER (or within) \caption.
-% For figures, \caption should occur after the \includegraphics.
-% Note that IEEEtran v1.7 and later has special internal code that
-% is designed to preserve the operation of \label within \caption
-% even when the captionsoff option is in effect. However, because
-% of issues like this, it may be the safest practice to put all your
-% \label just after \caption rather than within \caption{}.
-%
-% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
-% option should be used if it is desired that the figures are to be
-% displayed while in draft mode.
-%
-%\begin{figure}[!t]
-%\centering
-%\includegraphics[width=2.5in]{myfigure}
-% where an .eps filename suffix will be assumed under latex,
-% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-% via \DeclareGraphicsExtensions.
-%\caption{Simulation results for the network.}
-%\label{fig_sim}
-%\end{figure}
-
-% Note that the IEEE typically puts floats only at the top, even when this
-% results in a large percentage of a column being occupied by floats.
-
-
-% An example of a double column floating figure using two subfigures.
-% (The subfig.sty package must be loaded for this to work.)
-% The subfigure \label commands are set within each subfloat command,
-% and the \label for the overall figure must come after \caption.
-% \hfil is used as a separator to get equal spacing.
-% Watch out that the combined width of all the subfigures on a
-% line do not exceed the text width or a line break will occur.
-%
-%\begin{figure*}[!t]
-%\centering
-%\subfloat[Case I]{\includegraphics[width=2.5in]{box}%
-%\label{fig_first_case}}
-%\hfil
-%\subfloat[Case II]{\includegraphics[width=2.5in]{box}%
-%\label{fig_second_case}}
-%\caption{Simulation results for the network.}
-%\label{fig_sim}
-%\end{figure*}
-%
-% Note that often IEEE papers with subfigures do not employ subfigure
-% captions (using the optional argument to \subfloat[]), but instead will
-% reference/describe all of them (a), (b), etc., within the main caption.
-% Be aware that for subfig.sty to generate the (a), (b), etc., subfigure
-% labels, the optional argument to \subfloat must be present. If a
-% subcaption is not desired, just leave its contents blank,
-% e.g., \subfloat[].
-
-
-% An example of a floating table. Note that, for IEEE style tables, the
-% \caption command should come BEFORE the table and, given that table
-% captions serve much like titles, are usually capitalized except for words
-% such as a, an, and, as, at, but, by, for, in, nor, of, on, or, the, to
-% and up, which are usually not capitalized unless they are the first or
-% last word of the caption. Table text will default to \footnotesize as
-% the IEEE normally uses this smaller font for tables.
-% The \label must come after \caption as always.
-%
-%\begin{table}[!t]
-%% increase table row spacing, adjust to taste
-%\renewcommand{\arraystretch}{1.3}
-% if using array.sty, it might be a good idea to tweak the value of
-% \extrarowheight as needed to properly center the text within the cells
-%\caption{An Example of a Table}
-%\label{table_example}
-%\centering
-%% Some packages, such as MDW tools, offer better commands for making tables
-%% than the plain LaTeX2e tabular which is used here.
-%\begin{tabular}{|c||c|}
-%\hline
-%One & Two\\
-%\hline
-%Three & Four\\
-%\hline
-%\end{tabular}
-%\end{table}
-
-
-% Note that the IEEE does not put floats in the very first column
-% - or typically anywhere on the first page for that matter. Also,
-% in-text middle ("here") positioning is typically not used, but it
-% is allowed and encouraged for Computer Society conferences (but
-% not Computer Society journals). Most IEEE journals/conferences use
-% top floats exclusively.
-% Note that, LaTeX2e, unlike IEEE journals/conferences, places
-% footnotes above bottom floats. This can be corrected via the
-% \fnbelowfloat command of the stfloats package.
-
-
-% trigger a \newpage just before the given reference
-% number - used to balance the columns on the last page
-% adjust value as needed - may need to be readjusted if
-% the document is modified later
-%\IEEEtriggeratref{8}
-% The "triggered" command can be changed if desired:
-%\IEEEtriggercmd{\enlargethispage{-5in}}
-
-% references section
-
-% can use a bibliography generated by BibTeX as a .bbl file
-% BibTeX documentation can be easily obtained at:
-% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
-% The IEEEtran BibTeX style support page is at:
-% http://www.michaelshell.org/tex/ieeetran/bibtex/
-%\bibliographystyle{IEEEtran}
-% argument is your BibTeX string definitions and bibliography database(s)
-%\bibliography{IEEEabrv,../bib/paper}
-%
-% <OR> manually copy in the resultant .bbl file
-% set second argument of \begin to the number of references
-% (used to reserve space for the reference number labels box)
+The dataflow accelerator prototype (our DATE'17 University Booth demo) was
+designed as an asynchronous dataflow processor with reconfigurable pipeline depth.
+It was fabricated using the TSMC~90nm CMOS technology for low-power applications
+and retained functionality in the range 0.34-1.6V.
+Fig.~\ref{fig:voltage-resiliency} shows the resiliency of the chip, which adapts
+to varying voltage by slowing down and reducing power consumption.
 
 \begin{thebibliography}{12}
+\vspace{-1mm}
 
 \bibitem{calinescu2010formal}
 R. Calinescu, S. Kikuchi. \emph{``Formal methods @ runtime''}. In Proceedings of the Monterey Workshop, Pages 122–135, Springer, 2010.
@@ -574,12 +471,11 @@ J. Cortadella et al. \emph{``Logic synthesis for asynchronous controllers and in
   \emph{``Monads for functional programming''}.
   Advanced Functional Programming, Bastad Spring School, 1995.
 
-\bibitem{OPE}
-  C. Guo, W. Luk, S. Weston:
-  \emph{``Pipelined reconfigurable accelerator for ordinal pattern encoding''}.
-  IEEE Conference on Application-specific Systems, Architectures and Processors~(ASAP), 2014,
-  pp.~194--201.
-
+% \bibitem{OPE}
+%   C. Guo, W. Luk, S. Weston:
+%   \emph{``Pipelined reconfigurable accelerator for ordinal pattern encoding''}.
+%   IEEE Conference on Application-specific Systems, Architectures and Processors~(ASAP), 2014,
+%   pp.~194--201.
 
 % \bibitem{Weyns:2012:SFM:2347583.2347592}
 % D. Weyns, M. U. Iftikhar, D. G. de la Iglesia, T. Ahmad. \emph{``A
@@ -603,7 +499,4 @@ J. Cortadella et al. \emph{``Logic synthesis for asynchronous controllers and in
 
 \end{thebibliography}
 
-
-
-% that's all folks
 \end{document}

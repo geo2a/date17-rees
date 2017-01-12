@@ -348,12 +348,10 @@ class~\cite{WadlerMonads},
 that help to build custom EDSLs with strong static typing and compositional
 semantics.
 
-Here are three examples of \emph{Farfalle} code, showing power of Haskell's
+Here are two examples of \emph{Farfalle} code, showing the power of Haskell's
 monadic \texttt{do}-notation for building composable EDSL programs in clear
-imperative step-by-step manner: each line represents one command.
-
-Register increment has two steps: fetching value and putting an
-incremented one back.
+imperative step-by-step manner. To \emph{increment a register}, one needs to
+read the value it contains and then write the incremented value back:
 
 \begin{verbatim}
 increment register = do
@@ -361,9 +359,9 @@ increment register = do
     writeRegister register (value + 1)
 \end{verbatim}
 
-In order to fetch instruction opcodes and immediate arguments, one need to
-increment program counter and then fetch value it points to. Note a natural
-usage of previously defined \texttt{increment} function.
+To \emph{fetch an immediate argument}, one needs to
+increment the program counter and then fetch the value it points to. Note a
+natural usage of the previously defined \texttt{increment} function:
 
 \begin{verbatim}
 fetchArgument = do
@@ -372,8 +370,10 @@ fetchArgument = do
     readMemory address
 \end{verbatim}
 
-As a result, Farfalle has means to reduce errors in resilient systems design
-and give engineers a fast and safe prototyping tool.
+\emph{Farfalle} code can be translated both to Event-B notation for formal
+verification and to one of \textsc{Workcraft}'s DSLs, e.g. a CPOG model for
+further hardware synthesis, as illustrated in Fig.~\ref{fig:screenshot},
+providing engineers a fast and safe prototyping tool.
 
 \section{Tool support\label{sec:tools}}
 
@@ -555,6 +555,11 @@ A. Mokhov et al.
   \emph{``Design of Processors with Reconfigurable Microarchitecture''}.
   J. Low Power Electronics Application, 2014, vol. 4(1), pp. 26-43.
 
+\bibitem{HudakDSLs}
+  Hudak, P.
+  \emph{``Modular Domain Specific Languages and Tools''}.
+  Proceedings of the International Conference on Software Reuse, 1998, p. 134.
+
 \bibitem{STG}
 J. Cortadella et al. \emph{``Logic synthesis for asynchronous controllers and interfaces''}, Springer, 2012.
 
@@ -564,21 +569,17 @@ J. Cortadella et al. \emph{``Logic synthesis for asynchronous controllers and in
 \bibitem{EventB}
   J-R. Abrial. \emph{Modeling in Event-B: system and software engineering}. Cambridge University Press, 2010.
 
+\bibitem{WadlerMonads}
+  Philip Wadler.
+  \emph{``Monads for functional programming''}.
+  Advanced Functional Programming, Bastad Spring School, 1995.
+
 \bibitem{OPE}
   C. Guo, W. Luk, S. Weston:
   \emph{``Pipelined reconfigurable accelerator for ordinal pattern encoding''}.
   IEEE Conference on Application-specific Systems, Architectures and Processors~(ASAP), 2014,
   pp.~194--201.
 
-\bibitem{WadlerMonads}
-  Philip Wadler.
-  \emph{``Monads for functional programming''}.
-  Advanced Functional Programming, Bastad Spring School, 1995.
-
-\bibitem{HudakDSLs}
-  Hudak, P.
-  \emph{``Modular Domain Specific Languages and Tools''}.
-  Proceedings of the 5th International Conference on Software Reuse, p. 134, 1998.
 
 % \bibitem{Weyns:2012:SFM:2347583.2347592}
 % D. Weyns, M. U. Iftikhar, D. G. de la Iglesia, T. Ahmad. \emph{``A

@@ -338,7 +338,7 @@ for specifying dataflow computation graphs~\cite{DFS}.
 Verilog, a low-level language for hardware description, supported
 by conventional EDA tool chain.
 
-In our work, we focus on bridging Event-B~\cite{EventB}, a high-level DSL
+In our work, we focus on bridging Event-B~\cite{EventB}, a high-level language
 for formal specification of system requirements and reconfiguration,
 and DSLs provided by \textsc{Workcraft}. As a prototype of a bridging language,
 we develop \emph{Farfalle}, an intermediate-level DSL embedded in Haskell for
@@ -357,7 +357,7 @@ read the value it contains and then write the incremented value back:
 \begin{verbatim}
 increment register = do
     value <- readRegister register
-   writeRegister register (value + 1)
+    writeRegister register (value + 1)
 \end{verbatim}
 \vspace{-1mm}
 
@@ -453,7 +453,7 @@ A. Mokhov et al.
   J. Low Power Electronics Application, 2014, vol. 4(1), pp. 26-43.
 
 \bibitem{HudakDSLs}
-  Hudak, P.
+  P. Hudak.
   \emph{``Modular Domain Specific Languages and Tools''}.
   Proceedings of the International Conference on Software Reuse, 1998, p. 134.
 
@@ -467,7 +467,7 @@ J. Cortadella et al. \emph{``Logic synthesis for asynchronous controllers and in
   J-R. Abrial. \emph{Modeling in Event-B: system and software engineering}. Cambridge University Press, 2010.
 
 \bibitem{WadlerMonads}
-  Philip Wadler.
+  P. Wadler.
   \emph{``Monads for functional programming''}.
   Advanced Functional Programming, Bastad Spring School, 1995.
 

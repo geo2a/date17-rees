@@ -1,161 +1,8 @@
-
-%% bare_conf.tex
-%% V1.4b
-%% 2015/08/26
-%% by Michael Shell
-%% See:
-%% http://www.michaelshell.org/
-%% for current contact information.
-%%
-%% This is a skeleton file demonstrating the use of IEEEtran.cls
-%% (requires IEEEtran.cls version 1.8b or later) with an IEEE
-%% conference paper.
-%%
-%% Support sites:
-%% http://www.michaelshell.org/tex/ieeetran/
-%% http://www.ctan.org/pkg/ieeetran
-%% and
-%% http://www.ieee.org/
-
-%%*************************************************************************
-%% Legal Notice:
-%% This code is offered as-is without any warranty either expressed or
-%% implied; without even the implied warranty of MERCHANTABILITY or
-%% FITNESS FOR A PARTICULAR PURPOSE!
-%% User assumes all risk.
-%% In no event shall the IEEE or any contributor to this code be liable for
-%% any damages or losses, including, but not limited to, incidental,
-%% consequential, or any other damages, resulting from the use or misuse
-%% of any information contained here.
-%%
-%% All comments are the opinions of their respective authors and are not
-%% necessarily endorsed by the IEEE.
-%%
-%% This work is distributed under the LaTeX Project Public License (LPPL)
-%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
-%% distributed and modified. A copy of the LPPL, version 1.3, is included
-%% in the base LaTeX documentation of all distributions of LaTeX released
-%% 2003/12/01 or later.
-%% Retain all contribution notices and credits.
-%% ** Modified files should be clearly indicated as such, including  **
-%% ** renaming them and changing author support contact information. **
-%%*************************************************************************
-
-
-% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
-% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
-% *** with production work. The IEEE's font choices and paper sizes can   ***
-% *** trigger bugs that do not appear when using other class files.       ***                          ***
-% The testflow support page is at:
-% http://www.michaelshell.org/tex/testflow/
-
-
-
 \documentclass[conference]{IEEEtran}
-
 \usepackage[pdftex]{graphicx}
 \graphicspath{{../pdf/}{../jpeg/}}
 \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
-% Some Computer Society conferences also require the compsoc mode option,
-% but others use the standard conference format.
-%
-% If IEEEtran.cls has not been installed into the LaTeX system files,
-% manually specify the path to it like:
-% \documentclass[conference]{../sty/IEEEtran}
-
-
-
-
-
-% Some very useful LaTeX packages include:
-% (uncomment the ones you want to load)
-
-
-% *** MISC UTILITY PACKAGES ***
-%
-%\usepackage{ifpdf}
-% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
-% compilation based on whether the output is pdf or dvi.
-% usage:
-% \ifpdf
-%   % pdf code
-% \else
-%   % dvi code
-% \fi
-% The latest version of ifpdf.sty can be obtained from:
-% http://www.ctan.org/pkg/ifpdf
-% Also, note that IEEEtran.cls V1.7 and later provides a builtin
-% \ifCLASSINFOpdf conditional that works the same way.
-% When switching from latex to pdflatex and vice-versa, the compiler may
-% have to be run twice to clear warning/error messages.
-
-
-
-
-
-
-% *** CITATION PACKAGES ***
-%
-%\usepackage{cite}
-% cite.sty was written by Donald Arseneau
-% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
-% \cite{} output to follow that of the IEEE. Loading the cite package will
-% result in citation numbers being automatically sorted and properly
-% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
-% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
-% \cite will automatically add leading space, if needed. Use cite.sty's
-% noadjust option (cite.sty V3.8 and later) if you want to turn this off
-% such as if a citation ever needs to be enclosed in parenthesis.
-% cite.sty is already installed on most LaTeX systems. Be sure and use
-% version 5.0 (2009-03-20) and later if using hyperref.sty.
-% The latest version can be obtained at:
-% http://www.ctan.org/pkg/cite
-% The documentation is contained in the cite.sty file itself.
-
-
 \usepackage{url}
-
-
-
-% *** GRAPHICS RELATED PACKAGES ***
-%
-\ifCLASSINFOpdf
-  % \usepackage[pdftex]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../pdf/}{../jpeg/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
-\else
-  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
-  % will default to the driver specified in the system graphics.cfg if no
-  % driver is specified.
-  % \usepackage[dvips]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../eps/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.eps}
-\fi
-% graphicx was written by David Carlisle and Sebastian Rahtz. It is
-% required if you want graphics, photos, etc. graphicx.sty is already
-% installed on most LaTeX systems. The latest version and documentation
-% can be obtained at:
-% http://www.ctan.org/pkg/graphicx
-% Another good source of documentation is "Using Imported Graphics in
-% LaTeX2e" by Keith Reckdahl which can be found at:
-% http://www.ctan.org/pkg/epslatex
-%
-% latex, and pdflatex in dvi mode, support graphics in encapsulated
-% postscript (.eps) format. pdflatex in pdf mode supports graphics
-% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
-% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
-% not a bitmapped formats (.jpeg, .png). The IEEE frowns on bitmapped formats
-% which can result in "jaggedy"/blurry rendering of lines and letters as
-% well as large increases in file sizes.
-%
-% You can find documentation about the pdfTeX application at:
-% http://www.tug.org/applications/pdftex
 
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
@@ -177,22 +24,20 @@ Maxim Rykunov\IEEEauthorrefmark{4}}
 
 \maketitle
 
-% As a general rule, do not put math, special symbols or citations
-% in the abstract
 \begin{abstract}
 We present a methodology for the design and fast prototyping of
 processing cores with resilient microarchitecture. The resilience is
 achieved by equipping the core with a family of datapath components
 optimised for different operating modes and a flexible control
-structure that allows to change an instruction implementation in
-runtime depending on the conditions and application
+structure that allows to change an instruction implementation at
+runtime depending on current conditions and application
 requirements. We use asynchronous design techniques to achieve
 \emph{short-term resilience}, i.e. survival in extreme environmental
 conditions, such as near-threshold or unstable voltage supply.
 \emph{Long-term resilience} is achieved through
 runtime reconfiguration of the processor microarchitecture, which
-is essential for safety-critical applications, such as biomedical
-implants that cannot be taken offline for maintenance. By using
+is essential for safety-critical applications that cannot be taken
+offline for maintenance, such as biomedical implants. By using
 formal methods one can guarantee the correctness and uninterrupted
 service during such runtime reconfigurations.
 
@@ -226,11 +71,11 @@ systems has been studied for some time now. We refer the reader to a survey by
 Calinescu and Kikuchi~\cite{calinescu2010formal} that overviews the use of
 formal methods for adaptive systems at runtime, and an empirical comparison
 of different modelling formalisms by
-Bhattacharyya et al.~\cite{DBLP:journals/corr/BhattacharyyaMP16}. In the our
+Bhattacharyya et al.~\cite{DBLP:journals/corr/BhattacharyyaMP16}. In our
 work~\cite{ISA-formal} we introduced a methodology for the formal specification
 and synthesis of processor microarchitecture with runtime reconfigurability.
 The methodology is supported by open-source EDA toolsuite
-\textsc{Workcraft}~\cite{workcraft_web} and validated in silicon~\cite{rec-proc}.
+\textsc{Workcraft}~\cite{workcraft_web} and has been validated in silicon~\cite{rec-proc}.
 In the rest of the paper we discuss our current work on
 providing fast prototyping of reconfigurable resilient processing cores in
 \textsc{Workcraft} using a domain-specific language for
@@ -304,17 +149,17 @@ programming idioms~\cite{HudakDSLs}.
 
 \begin{figure*}[ht!]
 \begin{center}
-    \includegraphics[width=0.95\linewidth]{FIG/screen.png}
-    \vspace{-3mm}
+    \includegraphics[width=0.96\linewidth]{FIG/screen.png}
+    \vspace{-3.5mm}
     \caption{From formal specification to hardware synthesis and
     simulation of a simple 3-instruction processing core. A screenshot of \textsc{Workcraft}.}
     \label{fig:screenshot}
 \end{center}
-\vspace{-7mm}
+\vspace{-7.5mm}
 \end{figure*}
 
 To design resilient and reconfigurable systems, it is vital to have formal
-specification methods, simulation facilities, and verifications techniques.
+specification methods, simulation facilities and verification techniques.
 EDSLs can increase the productivity at every stage of hardware design:
 high-level specification
 languages help to describe the system functionality in a declarative way, software
@@ -338,18 +183,18 @@ for specifying dataflow computation graphs~\cite{DFS}.
 Verilog, a low-level language for hardware description, supported
 by conventional EDA tool chain.
 
-In our work, we focus on bridging Event-B~\cite{EventB}, a high-level language
-for formal specification of system requirements and reconfiguration,
+In our work, we focus on bridging Event-B~\cite{EventB}, a high-level formal notation
+for the specification of system requirements and reconfiguration,
 and DSLs provided by \textsc{Workcraft}. As a prototype of a bridging language,
-we develop \emph{Farfalle}, an intermediate-level DSL embedded in Haskell for
+we present \emph{Farfalle}, an intermediate-level DSL embedded in Haskell for
 the description of reconfigurable processor microarchitectures.
 Haskell provides powerful abstractions, e.g. the \texttt{Monad} type
 class~\cite{WadlerMonads},
 that help to build custom EDSLs with strong static typing and compositional
 semantics.
 
-Here are two examples of \emph{Farfalle} code, showing the power of Haskell's
-monadic \texttt{do}-notation for building composable EDSL programs in clear
+Here are two simple examples of \emph{Farfalle} code, highlighting the power of
+Haskell's monadic \texttt{do}-notation for building composable EDSL programs in clear
 imperative step-by-step manner. To \emph{increment a register}, one needs to
 read the value it contains and then write the incremented value back:
 
@@ -361,9 +206,10 @@ increment register = do
 \end{verbatim}
 \vspace{-1mm}
 
+\noindent
 To \emph{fetch an immediate argument}, one needs to
-increment the program counter and then fetch the value it points to. Note a
-natural usage of the previously defined \texttt{increment} function:
+increment the program counter \texttt{pc} and fetch the value it points to. Note
+how easily one can reuse previously defined \texttt{increment} function:
 
 \vspace{-2mm}
 \begin{verbatim}
@@ -401,7 +247,7 @@ providing engineers a fast and safe prototyping tool.
 % specifications.
 
 We validated the design flow in Fig.~\ref{fig:screenshot} by fabricating two
-ASIC prototypes: an Intel 8051 processing core~\cite{rec-proc} and a dataflow
+ASIC prototypes: an asynchronous Intel 8051 core~\cite{rec-proc} and a dataflow
 accelerator. Both were designed to survive in a wide range of voltages and supported
 runtime reconfigurability.
 
@@ -416,12 +262,12 @@ correctly down to 0.22V.
 
 \begin{figure}[h!]
 \begin{center}
-  \includegraphics[width=0.8\linewidth]{FIG/ope-chip.pdf}
+  \includegraphics[width=0.84\linewidth]{FIG/ope-chip.pdf}
   \vspace{-3mm}
   \caption{Resiliency of asynchronous control under unstable voltage.}
   \label{fig:voltage-resiliency}
 \end{center}
-\vspace{-8mm}
+\vspace{-7mm}
 \end{figure}
 
 The dataflow accelerator prototype (our DATE'17 University Booth demo) was
